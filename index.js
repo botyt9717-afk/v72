@@ -12,12 +12,11 @@
 
 const fs = require("fs-extra");
 const path = require("path");
-const { execSync } = require("child_process");
 const chalk = require("chalk");
 const moment = require("moment-timezone");
 const login = require("fca-unofficial");
 
-// আপনার utils ফোল্ডারের log.js ফাইলটিকে বটের মেইন ইঞ্জিনের সাথে যুক্ত করা হলো
+// utils ফোল্ডারের log.js ফাইলটিকে যুক্ত করা হলো
 const log = require("./utils/log");
 global.log = log;
 
@@ -71,7 +70,6 @@ function loadConfig() {
     log.success("config.json সফলভাবে লোড হয়েছে।");
   } catch (err) {
     log.error(`config.json লোড ব্যর্থ: ${err.message}`);
-    log.warn("config.json ফাইলে JSON ত্রুটি আছে। ঠিক করুন।");
     process.exit(1);
   }
 }
@@ -141,11 +139,11 @@ function loadEvents() {
       log.error(`ইভেন্ট ফাইল লোড ব্যর্থ [${file}]: ${e.message}`);
     }
   }
-  log.success(`${global.client.events.size}টি সিস্টেম ইভেন্ট লোড সম্পন্ন হয়েছে।`);
+  log.success(`${global.client.events.size}টিシステム ইভেন্ট লোড সম্পন্ন হয়েছে।`);
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//          ডেটাবেস কানেকশন
+//    ডেটাবেস কানেকশন এবং ইন-লাইন মডেল স্কিমা
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 async function connectDatabase() {
   try {
@@ -155,11 +153,38 @@ async function connectDatabase() {
     await sequelize.authenticate();
     log.success("SQLite ডেটাবেস সফলভাবে সংযুক্ত হয়েছে।");
     
-    const createDbPath = path.join(process.cwd(), "createDatabase.js");
-    const createDatabase = require(createDbPath);
-    const models = createDatabase({ Sequelize, sequelize });
-    
+    // বাইরের ক্র্যাশ এড়াতে মডেলগুলো এখানেই ডিফাইন করা হলো
+    const { DataTypes } = Sequelize;
+    const Users = sequelize.define("Users", {
+      userID: { type: DataTypes.STRING, primaryKey: true, allowNull: false },
+      name: { type: DataTypes.STRING },
+      gender: { type: DataTypes.STRING },
+      vanilla: { type: DataTypes.TEXT },
+      exp: { type: DataTypes.INTEGER, defaultValue: 0 },
+      money: { type: DataTypes.INTEGER, defaultValue: 0 },
+      banned: { type: DataTypes.BOOLEAN, defaultValue: false },
+      reason: { type: DataTypes.TEXT },
+      data: { type: DataTypes.TEXT, defaultValue: "{}" }
+    });
+
+    const Threads = sequelize.define("Threads", {
+      threadID: { type: DataTypes.STRING, primaryKey: true, allowNull: false },
+      threadInfo: { type: DataTypes.TEXT, defaultValue: "{}" },
+      threadData: { type: DataTypes.TEXT, defaultValue: "{}" },
+      banned: { type: DataTypes.BOOLEAN, defaultValue: false },
+      reason: { type: DataTypes.TEXT },
+      data: { type: DataTypes.TEXT, defaultValue: "{}" }
+    });
+
+    const Currencies = sequelize.define("Currencies", {
+      userID: { type: DataTypes.STRING, primaryKey: true, allowNull: false },
+      money: { type: DataTypes.INTEGER, defaultValue: 0 },
+      data: { type: DataTypes.TEXT, defaultValue: "{}" }
+    });
+
+    const models = { Users, Threads, Currencies };
     global.data.models = models;
+    log.success("ডেটাবেস টেবিল প্রস্তুত ও মডেল লোড সম্পন্ন হয়েছে।");
     return models;
   } catch (err) {
     log.error(`ডেটাবেস সংযোগে মারাত্মক ত্রুটি: ${err.message}`);
@@ -171,7 +196,6 @@ function saveCrashLog(type, error) {
   try {
     const logPath = path.join(process.cwd(), "logs", `crash-${type}-${Date.now()}.txt`);
     fs.outputFileSync(logPath, error.stack || error.toString());
-    log.info(`ক্র্যাশ রিপোর্ট সংরক্ষিত হয়েছে: logs/${path.basename(logPath)}`);
   } catch {}
 }
 
@@ -284,3 +308,4 @@ async function main() {
 }
 
 main();
+        
