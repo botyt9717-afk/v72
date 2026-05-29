@@ -1,24 +1,23 @@
 const { spawn } = require("child_process");
-const axios = require("axios");
-const logger = require("./utils/log");
 const express = require('express');
 const path = require('path');
+const logger = require("./utils/log");
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '/index.html'));
+    if (path.extname(__dirname) === '') {
+        res.send("🤖 BELAL BOTX666 IS ALIVE AND RUNNING!");
+    } else {
+        res.sendFile(path.join(__dirname, '/index.html'));
+    }
 });
 
 app.listen(port, () => {
     logger(`Server is running on port ${port}...`, "[ Starting ]");
 }).on('error', (err) => {
-    if (err.code === 'EACCES') {
-        logger(`Permission denied. Cannot bind to port ${port}.`, "[ Error ]");
-    } else {
-        logger(`Server error: ${err.message}`, "[ Error ]");
-    }
+    logger(`Server error: ${err.message}`, "[ Error ]");
 });
 
 global.countRestart = global.countRestart || 0;
@@ -48,4 +47,4 @@ function startBot(message) {
 };
 
 startBot("BELAL BOTX666 Engine initialisi
-ng...");
+    ng...");
