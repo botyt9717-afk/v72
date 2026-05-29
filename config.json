@@ -39,7 +39,7 @@
     "logRecordSize": 100,
     "online": true,
     "emitReady": false,
-    "userAgent": "Mozilla/5.0 (Linux; Android 14; SM-S918B Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/120.0.6099.230 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/453.0.0.45.109;]"
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
   },
   "APIKEYS": {
     "GROQ": "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",
@@ -105,10 +105,10 @@
   "ANTI_BAN": {
     "enabled": true,
     "humanDelay": true,
-    "minDelay": 500,
-    "maxDelay": 2000,
+    "minDelay": 1000,
+    "maxDelay": 3000,
     "rotateUserAgent": true,
-    "maxActionsPerHour": 100,
+    "maxActionsPerHour": 80,
     "pauseOnSuspicion": true
   },
   "GROUP_SETTINGS": {
@@ -124,12 +124,7 @@
     "antiJoin": false
   },
   "BOT_MODES": {
-    "reactUnsend": [
-      "😡",
-      "🤧",
-      "😤",
-      "😠"
-    ],
+    "reactUnsend": ["😡", "🤧", "😤", "😠"],
     "autoReact": false,
     "autoSeen": false,
     "autoReply": false,
@@ -157,80 +152,29 @@
     "enabled": true,
     "expPerMessage": 1,
     "levels": {
-      "1": {
-        "name": "🌱 নবীন",
-        "exp": 0
-      },
-      "2": {
-        "name": "⭐ সদস্য",
-        "exp": 100
-      },
-      "3": {
-        "name": "🌟 অভিজ্ঞ",
-        "exp": 500
-      },
-      "4": {
-        "name": "💫 विशेषज्ञ",
-        "exp": 1500
-      },
-      "5": {
-        "name": "🏆 চ্যাম্পিয়ন",
-        "exp": 5000
-      },
-      "6": {
-        "name": "👑 কিংবদন্তি",
-        "exp": 15000
-      },
-      "7": {
-        "name": "🌙 চাঁদের পাহাড়",
-        "exp": 50000
-      }
+      "1": { "name": "🌱 নবীন", "exp": 0 },
+      "2": { "name": "⭐ সদস্য", "exp": 100 },
+      "3": { "name": "🌟 অভিজ্ঞ", "exp": 500 },
+      "4": { "name": "💫 विशेषज्ञ", "exp": 1500 },
+      "5": { "name": "🏆 চ্যাম্পিয়ন", "exp": 5000 },
+      "6": { "name": "👑 কিংবদন্তি", "exp": 15000 },
+      "7": { "name": "🌙 চাঁদের পাহাড়", "exp": 50000 }
     }
   },
   "MODULES": {
-    "ai": {
-      "enabled": true,
-      "model": "groq",
-      "fallback": "gemini"
-    },
-    "music": {
-      "enabled": true,
-      "maxDuration": 600
-    },
-    "video": {
-      "enabled": true,
-      "maxSize": "50mb"
-    },
-    "game": {
-      "enabled": true
-    },
-    "economy": {
-      "enabled": true
-    },
-    "rank": {
-      "enabled": true
-    },
-    "weather": {
-      "enabled": true
-    },
-    "translate": {
-      "enabled": true
-    },
-    "image": {
-      "enabled": true
-    },
-    "admin": {
-      "enabled": true
-    },
-    "antiAbuse": {
-      "enabled": true
-    },
-    "welcome": {
-      "enabled": true
-    },
-    "leave": {
-      "enabled": true
-    }
+    "ai": { "enabled": true, "model": "groq", "fallback": "gemini" },
+    "music": { "enabled": true, "maxDuration": 600 },
+    "video": { "enabled": true, "maxSize": "50mb" },
+    "game": { "enabled": true },
+    "economy": { "enabled": true },
+    "rank": { "enabled": true },
+    "weather": { "enabled": true },
+    "translate": { "enabled": true },
+    "image": { "enabled": true },
+    "admin": { "enabled": true },
+    "antiAbuse": { "enabled": true },
+    "welcome": { "enabled": true },
+    "leave": { "enabled": true }
   },
   "MENU_SETTINGS": {
     "autoUnsend": true,
