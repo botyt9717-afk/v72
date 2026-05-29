@@ -8,12 +8,12 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "start": "node Belal.js",
+    "start": "node Main.js",
     "dev": "nodemon Main.js",
     "check": "node utils/validator.js",
     "setup": "node utils/setup.js",
     "backup": "node utils/backup.js",
-    "update": "git pull && npm install && node Belal.js"
+    "update": "git pull && npm install && node Main.js"
   },
   "keywords": [
     "belal-botx666",
