@@ -1,0 +1,11 @@
+[
+  {
+    "key": "dummy_cookie_key",
+    "value": "1234567890",
+    "domain": "facebook.com",
+    "path": "/",
+    "hostOnly": false,
+    "creation": "2026-05-29T12:00:00.000Z",
+    "lastAccessed": "2026-05-29T12:00:00.000Z"
+  }
+]
