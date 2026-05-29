@@ -1,0 +1,225 @@
+{
+  "BOTNAME": "🤖 BELAL BOTX666",
+  "VERSION": "6.6.6",
+  "AUTHOR": "Belal YT",
+  "DESCRIPTION": "2026 সালের সর্বোচ্চ শক্তিশালী Messenger Chatbot",
+
+  "PREFIX": "/",
+  "LANGUAGE": "bn",
+
+  "MASTER": {
+    "name": "Belal YT — চাঁদের পাহাড়",
+    "facebook": "https://www.facebook.com/mahi.gaming.165",
+    "facebook2": "https://m.facebook.com/profile.php?id=61577502464880",
+    "email": "mzbelalmzbelal@gmail.com",
+    "phone1": "01913246554",
+    "phone2": "01312893012",
+    "signature": "\n┄┉❈✡️⋆⃝চাঁদেড়~পাহাড়🪬❈┉┄"
+  },
+
+  "ADMINBOT": [
+    "61577502464880",
+    "100056725134303"
+  ],
+
+  "NDH": [
+    "61577502464880"
+  ],
+
+  "APPSTATEPATH": "appstate.json",
+
+  "DATABASE": {
+    "sqlite": {
+      "storage": "includes/data.sqlite"
+    }
+  },
+
+  "FCAOption": {
+    "selfListen": false,
+    "listenEvents": true,
+    "listenTyping": false,
+    "updatePresence": false,
+    "forceLogin": false,
+    "autoMarkDelivery": false,
+    "autoMarkRead": false,
+    "autoReconnect": true,
+    "logRecordSize": 100,
+    "online": true,
+    "emitReady": false,
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; SM-S918B Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/120.0.6099.230 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/453.0.0.45.109;]"
+  },
+
+  "APIKEYS": {
+    "GROQ": "YOUR_GROQ_API_KEY_HERE",
+    "GEMINI": "YOUR_GEMINI_API_KEY_HERE",
+    "OPENAI": "YOUR_OPENAI_API_KEY_HERE",
+    "OPEN_WEATHER": "YOUR_OPENWEATHER_KEY_HERE",
+    "YOUTUBE": "YOUR_YOUTUBE_API_KEY_HERE",
+    "TENOR": "YOUR_TENOR_KEY_HERE",
+    "REMOVEBG": "YOUR_REMOVEBG_KEY_HERE",
+    "DEEPAI": "YOUR_DEEPAI_KEY_HERE",
+    "HUGGINGFACE": "YOUR_HUGGINGFACE_KEY_HERE",
+    "WOLFRAM": "YOUR_WOLFRAM_KEY_HERE",
+    "RAPIDAPI": "YOUR_RAPIDAPI_KEY_HERE",
+    "BITLY": "YOUR_BITLY_KEY_HERE",
+    "IMGBB": "YOUR_IMGBB_KEY_HERE",
+    "SAUCENAO": "YOUR_SAUCENAO_KEY_HERE",
+    "TIKTOK": "YOUR_TIKTOK_KEY_HERE",
+    "SOUNDCLOUD": "YOUR_SOUNDCLOUD_KEY_HERE",
+    "VOICE_FPT": "YOUR_FPT_VOICE_KEY_HERE",
+    "VOICE_ZALO": "YOUR_ZALO_VOICE_KEY_HERE",
+    "NEWSAPI": "YOUR_NEWSAPI_KEY_HERE",
+    "EXCHANGERATE": "YOUR_EXCHANGERATE_KEY_HERE"
+  },
+
+  "SYSTEM": {
+    "autoRestart": true,
+    "restartInterval": 86400,
+    "errorLog": true,
+    "saveCrashLogs": true,
+    "maxMemoryMB": 1024,
+    "autoClean": true,
+    "cleanInterval": 3600,
+    "backupEnabled": true,
+    "backupInterval": 43200,
+    "maxBackups": 10,
+    "developerMode": false,
+    "showCommandLog": true
+  },
+
+  "PERFORMANCE": {
+    "cacheMessages": true,
+    "optimizeEvents": true,
+    "lazyLoadModules": true,
+    "maxConcurrentRequests": 10,
+    "requestTimeout": 30000,
+    "autoOptimizeOnError": true,
+    "clearCacheOnCrash": true,
+    "rateLimit": {
+      "enabled": true,
+      "maxPerMinute": 30,
+      "maxPerHour": 500
+    }
+  },
+
+  "ANTI_ABUSE": {
+    "blockSpam": true,
+    "spamThreshold": 5,
+    "spamCooldown": 60,
+    "autoBanSpam": false,
+    "protectAdmin": true,
+    "protectBot": true,
+    "notifyAdminOnAbuse": true,
+    "badWordsFilter": true,
+    "reportToAdmin": true
+  },
+
+  "ANTI_BAN": {
+    "enabled": true,
+    "humanDelay": true,
+    "minDelay": 500,
+    "maxDelay": 2000,
+    "rotateUserAgent": true,
+    "maxActionsPerHour": 100,
+    "pauseOnSuspicion": true
+  },
+
+  "GROUP_SETTINGS": {
+    "allowInbox": true,
+    "adminOnly": false,
+    "ndhOnly": false,
+    "adminPaOnly": false,
+    "notiGroup": true,
+    "autoApprove": false,
+    "welcomeEnabled": true,
+    "leaveNotiEnabled": true,
+    "antiOut": false,
+    "antiJoin": false
+  },
+
+  "BOT_MODES": {
+    "reactUnsend": ["😡", "🤧", "😤", "😠"],
+    "autoReact": false,
+    "autoSeen": false,
+    "autoReply": false,
+    "noPrefix": false,
+    "globalPrefix": true
+  },
+
+  "COOLDOWNS": {
+    "default": 3,
+    "ai": 5,
+    "image": 10,
+    "video": 15,
+    "daily": 43200,
+    "game": 5,
+    "admin": 0
+  },
+
+  "ECONOMY": {
+    "enabled": true,
+    "startBalance": 5000,
+    "dailyReward": 1000000,
+    "currency": "💰 টাকা",
+    "bankEnabled": true,
+    "shopEnabled": true
+  },
+
+  "RANK_SYSTEM": {
+    "enabled": true,
+    "expPerMessage": 1,
+    "levels": {
+      "1": {"name": "🌱 নবীন", "exp": 0},
+      "2": {"name": "⭐ সদস্য", "exp": 100},
+      "3": {"name": "🌟 অভিজ্ঞ", "exp": 500},
+      "4": {"name": "💫 বিশেষজ্ঞ", "exp": 1500},
+      "5": {"name": "🏆 চ্যাম্পিয়ন", "exp": 5000},
+      "6": {"name": "👑 কিংবদন্তি", "exp": 15000},
+      "7": {"name": "🌙 চাঁদের পাহাড়", "exp": 50000}
+    }
+  },
+
+  "MODULES": {
+    "ai": {"enabled": true, "model": "groq", "fallback": "gemini"},
+    "music": {"enabled": true, "maxDuration": 600},
+    "video": {"enabled": true, "maxSize": "50mb"},
+    "game": {"enabled": true},
+    "economy": {"enabled": true},
+    "rank": {"enabled": true},
+    "weather": {"enabled": true},
+    "translate": {"enabled": true},
+    "image": {"enabled": true},
+    "admin": {"enabled": true},
+    "antiAbuse": {"enabled": true},
+    "welcome": {"enabled": true},
+    "leave": {"enabled": true}
+  },
+
+  "MENU_SETTINGS": {
+    "autoUnsend": true,
+    "delayUnsend": 120,
+    "showCategories": true,
+    "showCooldown": true
+  },
+
+  "ADMIN_NOTIFY": {
+    "sendNoti": true,
+    "autoUnsend": true,
+    "timeToUnsend": 15,
+    "notifyOnError": true,
+    "notifyOnJoin": true,
+    "notifyOnKick": true
+  },
+
+  "COMMAND_DISABLED": [],
+  "EVENT_DISABLED": [],
+  "THREAD_BLACKLIST": [],
+  "USER_BLACKLIST": [],
+
+  "SECURITY": {
+    "encryptAppstate": false,
+    "logEnabled": true,
+    "godEnabled": true,
+    "caesarPassword": "BELAL666"
+  }
+}
