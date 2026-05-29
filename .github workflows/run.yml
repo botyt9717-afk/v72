@@ -1,0 +1,21 @@
+# ╔══════════════════════════════════════════╗
+# ║   BELAL BOTX666 — GitHub Actions        ║
+# ║   Master: Belal YT — চাঁদের পাহাড়     ║
+# ║   2026 Edition — Auto Run & Deploy      ║
+# ╚══════════════════════════════════════════╝
+
+name: 🤖 BELAL BOTX666 — Run Bot
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📥 Code ডাউনলোড হচ্ছে..."
+        uses: actions/checkout@v4
+
+      - name: "⚙️ টেস্ট রান"
+        run: |
+          echo "প্রজেক্ট সাজানোর কাজ চলছে। মেইন চাবি পরে দেওয়া হবে।"
