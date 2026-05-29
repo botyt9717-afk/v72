@@ -1,49 +1,86 @@
-# ╔══════════════════════════════════════════════════╗
-# ║     🤖 BELAL BOTX666 — GitHub Actions Workflow  ║
-# ║        Master: Belal YT | Version: 6.6.6        ║
-# ╚══════════════════════════════════════════════════╝
+# ╔══════════════════════════════════════════╗
+# ║   BELAL BOTX666 — GitHub Actions        ║
+# ║   Master: Belal YT — চাঁদের পাহাড়     ║
+# ║   2026 Edition — Auto Run & Deploy      ║
+# ╚══════════════════════════════════════════╝
 
 name: 🤖 BELAL BOTX666
 
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: "কী করতে চাও?"
+        required: true
+        default: "start"
+        type: choice
+        options:
+          - start
+          - check
   push:
     branches: [main, master]
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: "0 */6 * * *"
 
 jobs:
   run-bot:
-    name: 🚀 বট চালু করা
+    name: 🚀 বট চালুর প্রক্রিয়া
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
     steps:
-      - name: 📥 কোড ডাউনলোড
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      # ১. Code checkout
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      - name: "📥 Code ডাউনলোড হচ্ছে..."
         uses: actions/checkout@v4
 
-      - name: ⚙️ Node.js 20 সেটআপ
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      # ২. Node.js সেটআপ (সমস্যা করা cache লাইনটি সরিয়ে দেওয়া হয়েছে)
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      - name: "⚙️ Node.js 20 সেটআপ হচ্ছে..."
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: 🔧 FFmpeg ইন্সটল
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      # ৩. System tools ইনস্টল
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      - name: "🔧 System tools ইনস্টল হচ্ছে..."
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y ffmpeg python3-pip
+          sudo apt-get install -y ffmpeg python3 python3-pip build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+          echo "✅ System tools ইনস্টল সফল!"
 
-      - name: 📦 Dependencies ইন্সটল
-        run: npm install --legacy-peer-deps
-        env:
-          NODE_ENV: production
-
-      - name: 🔑 Appstate সেটআপ
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      # ৪. AppState সেটআপ
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      - name: "🔐 AppState সেটআপ হচ্ছে..."
         run: |
           echo '${{ secrets.APPSTATE }}' > appstate.json
-          echo "✅ appstate.json তৈরি হয়েছে"
+          echo "✅ AppState সেটআপ সফল!"
 
-      - name: 🤖 বট চালু
-        run: node index.js
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      # ৫. Dependencies ইনস্টল
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      - name: "📦 Dependencies ইনস্টল হচ্ছে..."
+        run: |
+          npm install --legacy-peer-deps --no-fund --no-audit
+          echo "✅ Dependencies ইনস্টল সফল!"
+
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      # ৬. Validator চেক
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      - name: "🔍 ফাইল Validator চেক হচ্ছে..."
+        run: |
+          node utils/validator.js || echo "⚠️ Validator warning — তবুও চালু হচ্ছে"
+
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      # ৭. Bot চালু
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━
+      - name: "🚀 BELAL BOTX666 চালু হচ্ছে..."
+        run: npm start
+        timeout-minutes: 350
         env:
           NODE_ENV: production
           TZ: Asia/Dhaka
@@ -52,5 +89,5 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
           REMOVEBG_KEY: ${{ secrets.REMOVEBG_KEY }}
-          IMGBB_KEY: ${{ secrets.IMG
-          BB_KEY }}
+          IMGBB_KEY: ${{ secrets.IMGBB_KEY }}
+
