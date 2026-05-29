@@ -7,6 +7,10 @@ name: 🤖 BELAL BOTX666
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main, master]
+  schedule:
+    - cron: '0 */6 * * *'
 
 jobs:
   run-bot:
@@ -36,8 +40,18 @@ jobs:
 
       - name: 🔑 Appstate সেটআপ
         run: |
-          echo "Setup appstate later"
+          echo '${{ secrets.APPSTATE }}' > appstate.json
+          echo "✅ appstate.json তৈরি হয়েছে"
 
       - name: 🤖 বট চালু
-        run: echo "Bot testing setup"
-        
+        run: node index.js
+        env:
+          NODE_ENV: production
+          TZ: Asia/Dhaka
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
+          REMOVEBG_KEY: ${{ secrets.REMOVEBG_KEY }}
+          IMGBB_KEY: ${{ secrets.IMGBB_KEY }}
+
