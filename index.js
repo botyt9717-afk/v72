@@ -17,21 +17,11 @@ const chalk = require("chalk");
 const moment = require("moment-timezone");
 const login = require("fca-unofficial");
 
-const BOT_START_TIME = Date.now();
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//         লগ সিস্টেম (বাংলায়)
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-const log = {
-  info:    (msg) => console.log(chalk.cyan(`[তথ্য]    ${moment().tz("Asia/Dhaka").format("HH:mm:ss")} ➤ ${msg}`)),
-  success: (msg) => console.log(chalk.green(`[সফল]     ${moment().tz("Asia/Dhaka").format("HH:mm:ss")} ✅ ${msg}`)),
-  warn:    (msg) => console.log(chalk.yellow(`[সতর্ক]   ${moment().tz("Asia/Dhaka").format("HH:mm:ss")} ⚠️  ${msg}`)),
-  error:   (msg) => console.log(chalk.red(`[ত্রুটি]  ${moment().tz("Asia/Dhaka").format("HH:mm:ss")} ❌ ${msg}`)),
-  bot:     (msg) => console.log(chalk.magenta(`[বট]      ${moment().tz("Asia/Dhaka").format("HH:mm:ss")} 🤖 ${msg}`)),
-  cmd:     (msg) => console.log(chalk.blue(`[কমান্ড]  ${moment().tz("Asia/Dhaka").format("HH:mm:ss")} ⚡ ${msg}`)),
-  event:   (msg) => console.log(chalk.gray(`[ইভেন্ট]  ${moment().tz("Asia/Dhaka").format("HH:mm:ss")} 📡 ${msg}`)),
-};
+// আপনার utils ফোল্ডারের log.js ফাইলটিকে বটের মেইন ইঞ্জিনের সাথে যুক্ত করা হলো
+const log = require("./utils/log");
 global.log = log;
+
+const BOT_START_TIME = Date.now();
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //           গ্লোবাল ভেরিয়েবল
@@ -208,7 +198,6 @@ function startBot(models) {
     api.setOptions(global.config.FCAOption || { listenEvents: true, selfListen: false });
     log.success(`BELAL BOTX666 চ্যাটবট সফলভাবে অনলাইন হয়েছে! UID: ${api.getCurrentUserID()}`);
 
-    // হ্যান্ডলার ফাইলগুলো লোড করা (আপনার বাইরে থাকা ফাইলের পাথ অনুযায়ী ঠিক করা হয়েছে)
     const handleCommand = require(path.join(process.cwd(), "handleCommand"))({
       api, models, Users: models.Users, Threads: models.Threads, Currencies: models.Currencies
     });
@@ -282,7 +271,6 @@ async function main() {
     process.exit(1);
   }
 
-  // KeepAlive সার্ভার চালু করার কোড (যদি ফাইলে থাকে)
   try {
     const keepAlivePath = path.join(process.cwd(), "keepAlive.js");
     if (fs.existsSync(keepAlivePath)) {
@@ -296,4 +284,3 @@ async function main() {
 }
 
 main();
-  
