@@ -1,22 +1,7 @@
-# ╔══════════════════════════════════════════╗
-# ║   BELAL BOTX666 — GitHub Actions        ║
-# ║   Master: Belal YT — চাঁদের পাহাড়     ║
-# ║   2026 Edition — Auto Run & Deploy      ║
-# ╚══════════════════════════════════════════╝
-
-name: 🤖 BELAL BOTX666
+name: BELAL-BOTX666
 
 on:
   workflow_dispatch:
-    inputs:
-      action:
-        description: "কী করতে চাও?"
-        required: true
-        default: "start"
-        type: choice
-        options:
-          - start
-          - check
   push:
     branches: [main, master]
   schedule:
@@ -24,70 +9,39 @@ on:
 
 jobs:
   run-bot:
-    name: 🚀 বট চালুর প্রক্রিয়া
+    name: Run Messenger Bot
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
     steps:
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      # ১. Code checkout
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      - name: "📥 Code ডাউনলোড হচ্ছে..."
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      # ২. Node.js সেটআপ (সমস্যা করা cache লাইনটি সরিয়ে দেওয়া হয়েছে)
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      - name: "⚙️ Node.js 20 সেটআপ হচ্ছে..."
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      # ৩. System tools ইনস্টল
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      - name: "🔧 System tools ইনস্টল হচ্ছে..."
+      - name: Install System Tools
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg python3 python3-pip build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
-          echo "✅ System tools ইনস্টল সফল!"
 
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      # ৪. AppState সেটআপ
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      - name: "🔐 AppState সেটআপ হচ্ছে..."
+      - name: Setup AppState
         run: |
           echo '${{ secrets.APPSTATE }}' > appstate.json
-          echo "✅ AppState সেটআপ সফল!"
+          echo "✅ appstate.json created successfully!"
 
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      # ৫. Dependencies ইনস্টল
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      - name: "📦 Dependencies ইনস্টল হচ্ছে..."
-        run: |
-          npm install --legacy-peer-deps --no-fund --no-audit
-          echo "✅ Dependencies ইনস্টল সফল!"
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps --no-fund --no-audit
 
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      # ৬. Validator চেক
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      - name: "🔍 ফাইল Validator চেক হচ্ছে..."
-        run: |
-          node utils/validator.js || echo "⚠️ Validator warning — তবুও চালু হচ্ছে"
+      - name: Run Validator
+        run: node utils/validator.js || echo "Warning but continuing"
 
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      # ৭. Bot চালু
-      # ━━━━━━━━━━━━━━━━━━━━━━━━━
-      - name: "🚀 BELAL BOTX666 চালু হচ্ছে..."
+      - name: Start BELAL BOTX666
         run: npm start
         timeout-minutes: 350
         env:
           NODE_ENV: production
           TZ: Asia/Dhaka
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
-          REMOVEBG_KEY: ${{ secrets.REMOVEBG_KEY }}
-          IMGBB_KEY: ${{ secrets.IMGBB_KEY }}
-
