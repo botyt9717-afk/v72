@@ -37,7 +37,7 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: 🔑 Appstate 设置আপ
+      - name: 🔑 Appstate সেটআপ
         run: |
           echo '${{ secrets.APPSTATE }}' > appstate.json
           echo "✅ appstate.json তৈরি হয়েছে"
@@ -52,5 +52,5 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
           REMOVEBG_KEY: ${{ secrets.REMOVEBG_KEY }}
-          IMGBB_KEY: ${{ secrets.IMGBB_KEY }}
-
+          IMGBB_KEY: ${{ secrets.IMG
+          BB_KEY }}
